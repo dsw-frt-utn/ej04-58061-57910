@@ -73,7 +73,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-    VentanaAgregarVehiculo ventanaAdd = new VentanaAgregarVehiculo();
+    AgregarVehiculoView ventanaAdd = new AgregarVehiculoView();
     ventanaAdd.setVisible(true); 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
