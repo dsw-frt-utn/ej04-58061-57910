@@ -19,27 +19,11 @@ public class Persistencia {
     private static void inicializarSucursales(){
         Sucursal s1 = new Sucursal("SUC01", "Av. Belgrano 1200", "Tucumán", responsables.get(0));
         Sucursal s2 = new Sucursal("SUC02", "San Martín 450", "Yerba Buena", responsables.get(1));
-        
         sucursales.add(s1);
         sucursales.add(s2);
     }
     
-private static void inicializarVehiculos(){
-        Sucursal s1 = sucursales.get(0);
-        Sucursal s2 = sucursales.get(1);
-        
-        // Fijate cómo reemplazamos los textos por "new Marca(...)"
-        VehiculoElectrico v1 = new VehiculoElectrico("AE123FG", new Marca("Renault", "Francia"), "Kangoo E-Tech", 2020, 1000, s1, 16);
-        VehiculoElectrico v2 = new VehiculoElectrico("AF456HI", new Marca("Ford", "EEUU"), "E-Transit", 2021, 1300, s2, 16);
-
-        VehiculoCombustible v3 = new VehiculoCombustible("AC789JK", new Marca("Iveco", "Italia"), "Daily", 2023, 1200, s1, 8, 1.5);
-        VehiculoCombustible v4 = new VehiculoCombustible("AD321LM", new Marca("Mercedes", "Alemania"), "Sprinter", 2020, 1200, s2, 7, 1);
-        
-        vehiculos.add(v1);
-        vehiculos.add(v2);
-        vehiculos.add(v3);
-        vehiculos.add(v4);
-    }
+    
     
     public static ArrayList<Vehiculo> getVehiculos(){
         return vehiculos;
@@ -51,9 +35,31 @@ private static void inicializarVehiculos(){
                 .findFirst();
     }
     
+    // NUEVO: agrega un vehículo a la lista
+    public static void agregarVehiculo(Vehiculo v) {
+        vehiculos.add(v);
+    }
+    
+    // NUEVO: devuelve los códigos de sucursal para el combo
+    public static ArrayList<String> getCodigosSucursales() {
+        ArrayList<String> codigos = new ArrayList<>();
+        for (Sucursal s : sucursales) {
+            codigos.add(s.getCodigo());
+        }
+        return codigos;
+    }
+    
+    // NUEVO: devuelve una sucursal por su código
+    public static Sucursal getSucursal(String codigo) {
+        return sucursales.stream()
+                .filter(s -> s.getCodigo().equals(codigo))
+                .findFirst()
+                .orElse(null);
+    }
+    
     public static void inicializar(){
         inicializarResponsables();
         inicializarSucursales();
-        inicializarVehiculos();
+        
     }
 }
